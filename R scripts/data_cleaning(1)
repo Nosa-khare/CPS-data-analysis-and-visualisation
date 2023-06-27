@@ -1,0 +1,18 @@
+#### Add quater_year column ####
+
+# Define a function to get year quarter
+get_yearly_quarter <- function(date) {
+  year <- lubridate::year(date)
+  quarter <- lubridate::quarter(date, with_year = FALSE)
+  
+  quarter_year <- paste0("Q", quarter, "_", year)
+  
+  return(quarter_year)
+}
+
+
+df_quarterly <- df %>%
+    mutate(quarter = get_yearly_quarter(date))
+
+# Display the resulting data frame
+head(df_quarterly)
